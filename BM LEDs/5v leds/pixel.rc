@@ -1,0 +1,5 @@
+pixels=20
+stripsattached=1
+strip1=ws2801
+order1=grb
+start1=00ff00

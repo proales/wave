@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+RESULT=`/usr/bin/osascript -e 'tell application "Finder" to reveal POSIX file "/Applications/monome_sum.app" as alias'`
+
+exit 0

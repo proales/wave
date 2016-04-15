@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-script minSpecVersion="1.000000" authoringTool="com.apple.PackageMaker" authoringToolVersion="3.0.6" authoringToolBuild="201">
+    <title>MonomeDevice</title>
+    <options customize="never" allow-external-scripts="no" rootVolumeOnly="true"/>
+    <installation-check script="pm_install_check();"/>
+    <script>function pm_install_check() {
+  if(!(/* &gt;= */ system.compareVersions(system.version.ProductVersion, '10.5.0') &gt;= 0)) {
+    my.result.title = 'Failure';
+    my.result.message = 'we\'re sorry, serialosc only runs on mac os 10.5 or newer.';
+    my.result.type = 'Fatal';
+    return false;
+  }
+  return true;
+}
+
+
+
+function pm_choice17_selected() {
+  result = true;
+  result = result &amp;&amp; (/* &lt; */ system.compareVersions(system.version.ProductVersion, '10.9.0') &lt; 0);
+  return result;
+}
+
+
+function pm_choice17_enabled() {
+  result = true;
+  result = result &amp;&amp; (/* &lt; */ system.compareVersions(system.version.ProductVersion, '10.9.0') &lt; 0);
+  return result;
+}</script>
+    <background file="background" alignment="bottomleft" scaling="none"/>
+    <license file="License"/>
+    <conclusion language="en" mime-type="text/rtf"><![CDATA[{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf190
+{\fonttbl\f0\fnil\fcharset0 LucidaGrande;}
+{\colortbl;\red255\green255\blue255;}
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f0\fs26 \cf0 To get started right away, open monome_sum located at:\
+\
+/Applications/monome_sum.app\
+\
+For more information on monome_sum and getting started with your monome device, head to:\
+\
+http://monome.org/docs/begin}]]></conclusion>
+    <choices-outline>
+        <line choice="intel"/>
+        <line choice="allplatforms"/>
+        <line choice="monomesum"/>
+        <line choice="choice17"/>
+        <line choice="scripts"/>
+        <line choice="choice21"/>
+    </choices-outline>
+    <choice id="intel" title="intel">
+        <pkg-ref id="org.monome.serialosc.libmonome-protocols.pkg"/>
+        <pkg-ref id="org.monome.serialosc.libmonome.pkg"/>
+        <pkg-ref id="org.monome.serialosc.liblo.pkg"/>
+        <pkg-ref id="org.monome.serialosc.serialoscd.pkg"/>
+    </choice>
+    <choice id="allplatforms" title="allplatforms">
+        <pkg-ref id="org.monome.serialosc.symlinks.libmonome.pkg"/>
+        <pkg-ref id="org.monome.serialosc.symlinks.liblo.pkg"/>
+        <pkg-ref id="org.monome.serialosc.monome.h.pkg"/>
+        <pkg-ref id="org.monome.serialosc.launchagent.pkg"/>
+    </choice>
+    <choice id="monomesum" title="monome_sum">
+        <pkg-ref id="com.monome.monomedevice.monome_sum.pkg"/>
+    </choice>
+    <choice id="choice17" title="FTDIUSBSerialDriver_10_4_10_5_10_6_10_7" selected="pm_choice17_selected()" enabled="pm_choice17_enabled()">
+        <pkg-ref id="com.monome.monomedevice.FTDIUSBSerialDriver_10_4_10_5_10_6_10_7.pkg"/>
+    </choice>
+    <choice id="scripts" title="scripts">
+        <pkg-ref id="com.monome.monomedevice.on-serialosc.pkg"/>
+        <pkg-ref id="com.monome.monomedevice.off-serialosc.pkg"/>
+    </choice>
+    <choice id="choice21" title="MonomeDevice Postflight" start_visible="false">
+        <pkg-ref id="com.monome.monomedevice.postflight.pkg"/>
+    </choice>
+    <pkg-ref id="org.monome.serialosc.libmonome-protocols.pkg" installKBytes="156" version="1.1" auth="Root">file:./Contents/Packages/monome.pkg</pkg-ref>
+    <pkg-ref id="org.monome.serialosc.libmonome.pkg" installKBytes="48" version="1.1" auth="Root">file:./Contents/Packages/libmonome11.pkg</pkg-ref>
+    <pkg-ref id="org.monome.serialosc.liblo.pkg" installKBytes="128" version="1.0" auth="Root">file:./Contents/Packages/liblo7.pkg</pkg-ref>
+    <pkg-ref id="org.monome.serialosc.serialoscd.pkg" installKBytes="204" version="1.2" auth="Root">file:./Contents/Packages/serialoscd.pkg</pkg-ref>
+    <pkg-ref id="org.monome.serialosc.symlinks.libmonome.pkg" installKBytes="0" version="1.1" auth="Root">file:./Contents/Packages/libmonome.pkg</pkg-ref>
+    <pkg-ref id="org.monome.serialosc.symlinks.liblo.pkg" installKBytes="0" version="1.0" auth="Root">file:./Contents/Packages/liblo.pkg</pkg-ref>
+    <pkg-ref id="org.monome.serialosc.monome.h.pkg" installKBytes="8" version="1.1" auth="Root">file:./Contents/Packages/monome-1.pkg</pkg-ref>
+    <pkg-ref id="org.monome.serialosc.launchagent.pkg" installKBytes="4" version="1.2" auth="Root">file:./Contents/Packages/orgmonomeserialosc.pkg</pkg-ref>
+    <pkg-ref id="com.monome.monomedevice.monome_sum.pkg" installKBytes="49716" version="1.0" auth="Root">file:./Contents/Packages/monomesum.pkg</pkg-ref>
+    <pkg-ref id="com.monome.monomedevice.FTDIUSBSerialDriver_10_4_10_5_10_6_10_7.pkg" installKBytes="472" version="1.0" auth="Root">file:./Contents/Packages/ftdiusbserialdriver104105106107.pkg</pkg-ref>
+    <pkg-ref id="com.monome.monomedevice.on-serialosc.pkg" installKBytes="4" version="1.0" auth="Root">file:./Contents/Packages/onserialosc.pkg</pkg-ref>
+    <pkg-ref id="com.monome.monomedevice.off-serialosc.pkg" installKBytes="4" version="1.0" auth="Root">file:./Contents/Packages/offserialosc.pkg</pkg-ref>
+    <pkg-ref id="com.monome.monomedevice.postflight.pkg" installKBytes="0" version="1.0" auth="Root">file:./Contents/Packages/monomedevicePostflight.pkg</pkg-ref>
+</installer-script>
